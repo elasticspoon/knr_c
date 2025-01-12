@@ -5,9 +5,10 @@ int main() {
   int step = 20;
 
   // formula: C = 5/9 * (F - 32)
+  printf("Farenheit\tCelsius\n");
   while (min <= max) {
-    int c = ((min - 32) * 5) / 9;
-    printf("F: %d\tC: %d\n", min, c);
+    float c = ((min - 32) * 5.0) / 9.0;
+    printf("%9d\t%7.2f\n", min, c);
     min += step;
   }
 }
