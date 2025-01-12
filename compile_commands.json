@@ -1,0 +1,11 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "hello_world.c"
+    ],
+    "directory": "/home/bandito/Projects/knr_c",
+    "file": "/home/bandito/Projects/knr_c/hello_world.c"
+  }
+]
