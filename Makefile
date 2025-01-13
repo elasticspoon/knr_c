@@ -6,19 +6,19 @@ all: $(OUTPUTS)
 
 $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	gcc $< -o $@
+	bear -- gcc $< -o $@
 
 run: $(OUTPUTS)
 	@echo "Specify a file to run: make run target=dir/whatever"
 
 $(BUILD_DIR)/%.run: %.c
 	@mkdir -p $(dir $@)
-	gcc $< -o $@
+	bear -- gcc $< -o $@
 	./$@
 
 %: %.c
 	@mkdir -p $(dir $(BUILD_DIR)/$*)
-	gcc $< -o $(BUILD_DIR)/$*
+	bear -- gcc $< -o $(BUILD_DIR)/$*
 	./$(BUILD_DIR)/$*
 
 clean:
