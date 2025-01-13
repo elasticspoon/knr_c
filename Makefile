@@ -1,6 +1,25 @@
-hello_world: ./c_1/hello_world.c
-	bear -- gcc ./c_1/hello_world.c -o ./build/hello_world
-farenheit: ./c_1/celcius.c
-	bear -- gcc ./c_1/celcius.c -o ./build/celcius
-celcius: ./c_1/farenheit.c
-	bear -- gcc ./c_1/farenheit.c -o ./build/farenheit
+SRC := $(shell find . -name '*.c')
+BUILD_DIR := build
+OUTPUTS := $(patsubst ./%.c, $(BUILD_DIR)/%.o, $(SRC))
+
+all: $(OUTPUTS)
+
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	gcc $< -o $@
+
+run: $(OUTPUTS)
+	@echo "Specify a file to run: make run target=dir/whatever"
+
+$(BUILD_DIR)/%.run: %.c
+	@mkdir -p $(dir $@)
+	gcc $< -o $@
+	./$@
+
+%: %.c
+	@mkdir -p $(dir $(BUILD_DIR)/$*)
+	gcc $< -o $(BUILD_DIR)/$*
+	./$(BUILD_DIR)/$*
+
+clean:
+	rm -rf $(BUILD_DIR)
