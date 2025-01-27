@@ -1,23 +1,24 @@
 #include <stdio.h>
 
-int main() {
-  int c;
-  int cons_chars = 0;
-  int wc = 0;
+#define IN 1  /* inside a word */
+#define OUT 0 /* outside a word */
 
+int main() {
+  int c, nl, nw, nc, state;
+  state = OUT;
+
+  nl = nw = nc = 0;
   while ((c = getchar()) != EOF) {
+    nc++;
+    if (c == '\n') {
+      nl++;
+    }
     if (c == ' ' || c == '\t' || c == '\n') {
-      if (cons_chars >= 1) {
-        wc++;
-      }
-      cons_chars = 0;
-    } else {
-      cons_chars++;
+      state = OUT;
+    } else if (state == OUT) {
+      nw++;
+      state = IN;
     }
   }
-  if (cons_chars > 1) {
-    wc++;
-  }
-
-  printf("word count: %d\n", wc);
+  printf("words: %d\t lines: %d\tchars: %d\n", nw, nl, nc);
 }
