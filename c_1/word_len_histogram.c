@@ -65,5 +65,5 @@ int main() {
     }
     printf("\n");
   }
-  /* free(wl); */
+  free(wl);
 }
