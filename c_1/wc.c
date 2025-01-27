@@ -6,14 +6,18 @@ int main() {
   int wc = 0;
 
   while ((c = getchar()) != EOF) {
-    if (c == ' ') {
-      cons_chars++;
-      if (cons_chars > 1) {
-        continue;
+    if (c == ' ' || c == '\t' || c == '\n') {
+      if (cons_chars >= 1) {
+        wc++;
       }
-    } else {
       cons_chars = 0;
+    } else {
+      cons_chars++;
     }
-    putchar(c);
   }
+  if (cons_chars > 1) {
+    wc++;
+  }
+
+  printf("word count: %d\n", wc);
 }
