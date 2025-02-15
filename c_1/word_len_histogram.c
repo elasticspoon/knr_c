@@ -50,11 +50,7 @@ int main() {
   }
 
   printf("\nWord Length Frequencies\n");
-  for (int i = 1; i <= max_length; i++) {
-    printf("%d\t", i);
-  }
-  printf("\n");
-  for (int i = 1; i <= max_freq; i++) {
+  for (int i = max_freq; i >= 1; i--) {
     for (int len = 1; len <= max_length; len++) {
       if (wl[len] >= i) {
         printf("x\t");
@@ -64,5 +60,9 @@ int main() {
     }
     printf("\n");
   }
+  for (int i = 1; i < max_length; i++) {
+    printf("%d\t", i);
+  }
+  printf("%d\n", max_length);
   free(wl);
 }
