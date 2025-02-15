@@ -5,7 +5,6 @@
 
 /* TODO:  */
 /* - flip the histogram, the labels should be below */
-/* - resize the array dynamically */
 
 int *resize(int *arr, int curr) {
   int *new_arr = (int *)realloc(arr, curr * 2 * sizeof(int));
@@ -21,8 +20,8 @@ int *resize(int *arr, int curr) {
 }
 
 int main() {
-  int c, max_l, cons_chars, max_f;
-  c = max_l = max_f = cons_chars = 0;
+  int c, max_length, cons_chars, max_freq;
+  c = max_length = max_freq = cons_chars = 0;
   int arr_l = 4;
   int *wl = (int *)calloc(arr_l, sizeof(int));
   if (wl == NULL) {
@@ -33,8 +32,8 @@ int main() {
     if (c == ' ' || c == '\t' || c == '\n') {
       if (cons_chars > 0) {
         wl[cons_chars]++;
-        if (wl[cons_chars] > max_f) {
-          max_f = wl[cons_chars];
+        if (wl[cons_chars] > max_freq) {
+          max_freq = wl[cons_chars];
         }
       }
       cons_chars = 0;
@@ -44,19 +43,19 @@ int main() {
         wl = resize(wl, arr_l);
         arr_l = arr_l * 2;
       }
-      if (cons_chars > max_l) {
-        max_l = cons_chars;
+      if (cons_chars > max_length) {
+        max_length = cons_chars;
       }
     }
   }
 
-  printf("Word Length Frequencies\n");
-  for (int i = 1; i <= max_l; i++) {
+  printf("\nWord Length Frequencies\n");
+  for (int i = 1; i <= max_length; i++) {
     printf("%d\t", i);
   }
   printf("\n");
-  for (int i = 1; i <= max_f; i++) {
-    for (int len = 1; len <= max_l; len++) {
+  for (int i = 1; i <= max_freq; i++) {
+    for (int len = 1; len <= max_length; len++) {
       if (wl[len] >= i) {
         printf("x\t");
       } else {
