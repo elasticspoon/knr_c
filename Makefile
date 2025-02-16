@@ -1,5 +1,5 @@
 SRC := $(shell find . -name '*.c')
-BUILD_DIR := build
+BUILD_DIR := .
 OUTPUTS := $(patsubst ./%.c, $(BUILD_DIR)/%.o, $(SRC))
 
 all: $(OUTPUTS)
